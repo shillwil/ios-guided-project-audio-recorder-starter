@@ -56,6 +56,31 @@ class AudioRecorderController: UIViewController {
         audioPlayer = try? AVAudioPlayer(contentsOf: songURL) // FIX_ME: use better error handling
     }
     
+    // What do I want to do?
+    // pause it
+    // volume
+    // restart the audio
+    // update the time/labels
+    
+    var isPlaying: Bool {
+        audioPlayer?.isPlaying ?? false
+    }
+    
+    func play() {
+        audioPlayer?.play()
+    }
+    
+    func pause() {
+        audioPlayer?.pause()
+    }
+    
+    func playPause() {
+        if isPlaying {
+            pause()
+        } else {
+            play()
+        }
+    }
     
     // MARK: - Recording
     
@@ -64,7 +89,7 @@ class AudioRecorderController: UIViewController {
     // MARK: - Actions
     
     @IBAction func togglePlayback(_ sender: Any) {
-        audioPlayer?.play()
+        playPause()
 	}
     
     @IBAction func updateCurrentTime(_ sender: UISlider) {
